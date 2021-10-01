@@ -24,11 +24,9 @@ fun Shop.getNumberOfDeliveredProductByCity(): Map<City, Int> = customers.map {cu
 
 // 8. Получить соответствие в мапе: город - самый популярный продукт в городе.
 fun Shop.getMostPopularProductInCity(): Map<City, Product> = customers.map { customer -> Pair(customer.city, customer.orders.map { it.products }.flatten()) }
-    .groupBy { it.first }.map { entry ->  Pair(entry.key, entry.value.flatMap { it.second }.groupingBy { it }.eachCount().maxByOrNull { it.value }!!.key) }
-    .toMap()
+    .groupBy { it.first }.map { entry ->  Pair(entry.key, entry.value.flatMap { it.second }.groupingBy { it }.eachCount().maxByOrNull { it.value }!!.key) }.toMap()
 
 // 9. Получить набор товаров, которые заказывали все покупатели.
-fun Shop.getProductsOrderedByAll(): Set<Product> = customers.map { it.orders.map { it.products }.flatten().toSet() }.
-reduceRight { set, acc ->  set.intersect(acc)}
+fun Shop.getProductsOrderedByAll(): Set<Product> = customers.map { it.orders.map { it.products }.flatten().toSet() }.reduceRight { set, acc ->  set.intersect(acc)}
 
 
