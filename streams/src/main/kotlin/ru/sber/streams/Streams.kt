@@ -1,7 +1,7 @@
 package ru.sber.streams
 
 // 1. Используя withIndex() посчитать сумму элементов листа, индекс которых кратен 3. (нулевой индекс тоже входит)
-fun getSumWithIndexDivisibleByThree(list: List<Long>): Long = list.withIndex().filter { it.index % 3 == 0 }.sumOf { it.value }
+fun getSumWithIndexDivisibleByThree(list: List<Long>): Long = list.withIndex().filter { it.index % 3 == 0 }.sumOf { it.value } 
 
 // 2. Используя функцию generateSequence() создать последовательность, возвращающую числа Фибоначчи.
 fun generateFibonacciSequence(): Sequence<Int> = generateSequence(Pair(0, 1),{ Pair(it.second, it.first + it.second) }).map { it.first }
